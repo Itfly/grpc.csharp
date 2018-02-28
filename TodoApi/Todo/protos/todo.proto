@@ -1,0 +1,45 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Todo.Proto";
+
+package todo;
+
+import "google/protobuf/empty.proto";
+
+// Interface exported by the server.
+service TodoApi {
+  rpc GetTodoItem(GetTodoItemRequest) returns (TodoItem) {}
+
+  rpc GetAllTodoItems(google.protobuf.Empty) returns (stream TodoItem) {}
+
+  rpc AddTodoItem(AddTodoItemRequest) returns (TodoItem) {}
+
+  rpc UpdateTodoItem(UpdateTodoItemRequest) returns (TodoItem) {}
+
+  rpc DeleteTodoItem(DeleteTodoItemRequest) returns (google.protobuf.Empty) {}
+}
+
+message TodoItem {
+  int64 id = 1;
+  string name = 2;
+  bool isComplete = 3;
+} 
+
+message GetTodoItemRequest{
+  int64 id = 1;
+}
+
+message AddTodoItemRequest{
+  string name = 1;
+  bool isComplete = 2;
+}
+
+message UpdateTodoItemRequest{
+  int64 id = 1;
+  string name = 2;
+  bool isComplete = 3;
+}
+
+message DeleteTodoItemRequest{
+  int64 id = 1;
+}
