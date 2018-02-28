@@ -163,7 +163,7 @@ public class TodoApiImpl : TodoApi.TodoApiBase
     }
     
     ....
-    // See others from www.github.com
+    // See others from https://github.com/Itfly/grpc.csharp/blob/master/TodoApi/TodoServer/TodoApiImpl.cs
 }
 ```
 
@@ -171,7 +171,7 @@ This project can be builded successfully, however it would throw grpc_csharp_ext
 
 ### Implement the TodoClient
 
-Crete a Todo client that dials the gRPC server. Get the client object `TodoApi.TodoApiClient` and call these APIs with writing logs. See the client code from [Here](www.github.com).
+Crete a Todo client that dials the gRPC server. Get the client object `TodoApi.TodoApiClient` and call these APIs with writing logs. See the client code from [Here](https://github.com/Itfly/grpc.csharp/blob/master/TodoApi/TodoClient/TodoClient.cs).
 
 ### Run the server and client
 
