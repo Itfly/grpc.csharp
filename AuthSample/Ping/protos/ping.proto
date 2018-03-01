@@ -1,0 +1,22 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Ping.Proto";
+
+package Ping;
+
+
+// Interface exported by the server.
+service PingApi {
+	rpc Echo(Ping) returns (Pong) {}
+}
+
+message Ping {
+	string sender = 1;
+	int64 timestamp = 2;
+	int64 ttl = 3;
+} 
+
+message Pong{
+	bool isSuccess = 1;
+	int64 timestamp = 2;
+}
