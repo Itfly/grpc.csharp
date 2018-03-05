@@ -4,6 +4,8 @@ using System;
 using System.Threading.Tasks;
 using Greeter.Proto;
 using Grpc.Core;
+using Grpc.Core.Logging;
+using Grpc.Core.Utils;
 
     class GreeterImpl : Greeter.GreeterBase
     {
