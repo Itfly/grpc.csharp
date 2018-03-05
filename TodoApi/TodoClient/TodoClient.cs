@@ -7,7 +7,6 @@
 
     using Google.Protobuf.WellKnownTypes;
     using Grpc.Core;
-    using Todo;
     using Todo.Proto;
 
     public class TodoClient
@@ -31,12 +30,16 @@
                 };
 
                 var item = _client.GetTodoItem(request);
-                Log(item.Exists()
-                    ? $"Found TodoItem: id={item.Id}, name={item.Name}, isComplete={item.IsComplete}"
-                    : $"Found no TodoItem for id={id}");
+                Log($"Found TodoItem: id={item.Id}, name={item.Name}, isComplete={item.IsComplete}");
             }
             catch (RpcException e)
             {
+                if (e.Status.StatusCode == StatusCode.NotFound)
+                {
+                    Log($"Found no TodoItem for id={id}");
+                    return;
+                }
+
                 Log("Rpc failed, " + e.Message);
                 throw;
             }
@@ -105,13 +108,16 @@
                     IsComplete = item.IsComplete
                 };
 
-                item = _client.UpdateTodoItem(request);
-                Log(item != null
-                    ? $"Update TodoItem succeeded: id={item.Id}, name={item.Name}, isComplete={item.IsComplete}"
-                    : $"Failed to udpate TodoItem");
+                 _client.UpdateTodoItem(request);
             }
             catch (RpcException e)
             {
+                if (e.Status.StatusCode == StatusCode.NotFound)
+                {
+                    Log($"Found no TodoItem");
+                    return;
+                }
+
                 Log("Rpc failed, " + e.Message);
                 throw;
             }
@@ -128,13 +134,16 @@
                     Id = id,
                 };
 
-                var empty = _client.DeleteTodoItem(request);
-                Log(empty != null
-                    ? $"Delete TodoItem succeeded." 
-                    : $"Failed to delete TodoItem");
+                _client.DeleteTodoItem(request);
             }
             catch (RpcException e)
             {
+                if (e.Status.StatusCode == StatusCode.NotFound)
+                {
+                    Log($"Found no TodoItem");
+                    return;
+                }
+
                 Log("Rpc failed, " + e.Message);
                 throw;
             }

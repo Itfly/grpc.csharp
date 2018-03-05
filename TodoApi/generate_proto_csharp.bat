@@ -4,7 +4,7 @@ setlocal
 @rem enter this directory
 cd /d %~dp0
 
-set TOOLS_PATH=..\packages\grpc.tools\1.9.0\tools\windows_x64
+set TOOLS_PATH=..\packages\grpc.tools\1.10.0\tools\windows_x64
 set PROTOBUF_PATH=..\
 set PROTO_PATH=Todo\protos
 

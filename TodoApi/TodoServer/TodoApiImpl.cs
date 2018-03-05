@@ -29,7 +29,7 @@
             var item = await _context.TodoItems.FirstOrDefaultAsync(t => t.Id == request.Id);
             if (item == null)
             {
-                return TodoUtil.NullTodoItem;
+                throw new RpcException(new Status(StatusCode.NotFound, "Todo Item not found"));
             }
 
             return item;
@@ -58,7 +58,7 @@
             var item = await _context.TodoItems.FirstOrDefaultAsync(t => t.Id == request.Id);
             if (item == null)
             {
-                return await Task.FromResult(TodoUtil.NullTodoItem);
+                throw new RpcException(new Status(StatusCode.NotFound, "Todo Item not found"));
             }
 
             item.Name = request.Name;
@@ -74,7 +74,7 @@
             var item = await _context.TodoItems.FirstOrDefaultAsync(t => t.Id == request.Id);
             if (item == null)
             {
-                return await Task.FromResult(new Empty());
+                throw new RpcException(new Status(StatusCode.NotFound, "Todo Item not found"));
             }
 
             _context.TodoItems.Remove(item);

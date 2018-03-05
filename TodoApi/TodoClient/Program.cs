@@ -9,6 +9,9 @@
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Press any key to start...");
+            Console.ReadKey();
+
             var channel = new Channel("127.0.0.1:50051", ChannelCredentials.Insecure);
             var client = new TodoClient(new TodoApi.TodoApiClient(channel));
 
