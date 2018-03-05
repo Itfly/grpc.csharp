@@ -9,3 +9,7 @@ Install openssl by choco
 ```cmd
 choco install openssl.light
 ```
+
+reference:
+https://grpc.io/docs/guides/auth.html#supported-auth-mechanisms
+https://bbengfort.github.io/programmer/2017/03/03/secure-grpc.html
