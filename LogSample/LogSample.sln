@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RouteGuide", "RouteGuide\RouteGuide.csproj", "{8848CF91-2F4A-44FE-87AB-3698F4F30A8B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RouteGuideServer", "RouteGuideServer\RouteGuideServer.csproj", "{AEDFC95E-F55F-4A70-9F5C-75CBAE1462DC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RouteGuideClient", "RouteGuideClient\RouteGuideClient.csproj", "{4EC6DB1F-8837-49D7-9EE6-2EB42E93D214}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{528BFF9A-7F15-47C6-A1BA-2734A52A3CB4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8848CF91-2F4A-44FE-87AB-3698F4F30A8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8848CF91-2F4A-44FE-87AB-3698F4F30A8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8848CF91-2F4A-44FE-87AB-3698F4F30A8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8848CF91-2F4A-44FE-87AB-3698F4F30A8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEDFC95E-F55F-4A70-9F5C-75CBAE1462DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEDFC95E-F55F-4A70-9F5C-75CBAE1462DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEDFC95E-F55F-4A70-9F5C-75CBAE1462DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEDFC95E-F55F-4A70-9F5C-75CBAE1462DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EC6DB1F-8837-49D7-9EE6-2EB42E93D214}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EC6DB1F-8837-49D7-9EE6-2EB42E93D214}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EC6DB1F-8837-49D7-9EE6-2EB42E93D214}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EC6DB1F-8837-49D7-9EE6-2EB42E93D214}.Release|Any CPU.Build.0 = Release|Any CPU
+		{528BFF9A-7F15-47C6-A1BA-2734A52A3CB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{528BFF9A-7F15-47C6-A1BA-2734A52A3CB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{528BFF9A-7F15-47C6-A1BA-2734A52A3CB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{528BFF9A-7F15-47C6-A1BA-2734A52A3CB4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {229764C2-0406-4E4B-AEE4-7968C6D57696}
+	EndGlobalSection
+EndGlobal
