@@ -1,7 +1,8 @@
-﻿using System;
-
-namespace TodoServer
+﻿namespace TodoServer
 {
+    using System;
+    using System.Threading;
+
     using Grpc.Core;
     using Microsoft.EntityFrameworkCore;
     using Todo.Proto;
@@ -25,11 +26,23 @@ namespace TodoServer
             server.Start();
 
             Console.WriteLine("Todo API server listening on port " + Port);
-            Console.WriteLine("Press any key to stop the server...");
-            Console.ReadKey();
+            Console.WriteLine("Press ctrl+c to stop the server...");
+
+            var resetEvent = new ManualResetEvent(false);
+            Console.CancelKeyPress += (sender, eventArgs) =>
+            {
+                eventArgs.Cancel = true;
+                Console.WriteLine("Receive terminal signal.");
+                resetEvent.Set();
+            };
+
+
+            resetEvent.WaitOne();
 
             server.ShutdownAsync().Wait();
             context.Dispose();
+
+            Console.WriteLine("Server stopped");
         }
     }
 }

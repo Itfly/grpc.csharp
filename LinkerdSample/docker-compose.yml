@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  helloworldweb:
+    image: helloworldweb
+    build:
+      context: ./helloworldweb
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    depends_on:
+      - helloserver
+      - worldserver
+
+
+  helloserver:
+    image: helloserver
+    build:
+      context: ./helloserver
+      dockerfile: Dockerfile
+
+
+  worldserver:
+    image: worldserver
+    build:
+      context: ./worldserver
+      dockerfile: Dockerfile
+

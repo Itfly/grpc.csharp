@@ -1,0 +1,20 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Helloworld.Proto";
+
+package helloworld;
+
+service Hello {
+  rpc Greeting(GreetRequest) returns (GreetResponse) {}
+}
+
+service World {
+  rpc Greeting(GreetRequest) returns (GreetResponse) {}
+}
+
+message GreetRequest {
+}
+
+message GreetResponse {
+  string message = 1;
+}
