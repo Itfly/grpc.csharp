@@ -5,6 +5,7 @@
 
     using Grpc.Core;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.DependencyInjection;
     using Todo.Proto;
 
     class Program
@@ -13,14 +14,14 @@
 
         static void Main(string[] args)
         {
-            var options = new DbContextOptionsBuilder<TodoContext>()
-                .UseInMemoryDatabase("todo_db")
-                .Options;
-            var context = new TodoContext(options);
+            var serviceProvider = new ServiceCollection()
+                .AddDbContext<TodoContext>(options => options.UseInMemoryDatabase("todo_db"), ServiceLifetime.Singleton/* only because it's InMemory */)
+                //.AddLogging()
+                .BuildServiceProvider();
 
             var server = new Server
             {
-                Services = { TodoApi.BindService(new TodoApiImpl(context)) },
+                Services = { TodoApi.BindService(new TodoApiImpl(serviceProvider)) },
                 Ports = { new ServerPort("localhost", Port, ServerCredentials.Insecure) }
             };
             server.Start();
@@ -40,7 +41,7 @@
             resetEvent.WaitOne();
 
             server.ShutdownAsync().Wait();
-            context.Dispose();
+            serviceProvider.Dispose();
 
             Console.WriteLine("Server stopped");
         }

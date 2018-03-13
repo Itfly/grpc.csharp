@@ -1,32 +1,29 @@
 ﻿namespace TodoServer
 {
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
 
     using Google.Protobuf.WellKnownTypes;
     using Grpc.Core;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.DependencyInjection;
     using Todo;
     using Todo.Proto;
 
     public class TodoApiImpl : TodoApi.TodoApiBase
     {
-        private readonly TodoContext _context;
+        private readonly IServiceProvider _provider;
 
-        public TodoApiImpl(TodoContext context)
+        public TodoApiImpl(IServiceProvider provider)
         {
-            _context = context;
-
-            if (!_context.TodoItems.Any())
-            {
-                _context.TodoItems.Add(new TodoItem {Name = "Item1"});
-                _context.SaveChanges();
-            }
+            _provider = provider;
         }
 
         public override async Task<TodoItem> GetTodoItem(GetTodoItemRequest request, ServerCallContext context)
         {
-            var item = await _context.TodoItems.FirstOrDefaultAsync(t => t.Id == request.Id);
+            var todoContext = GetScopedTodoContext();
+            var item = await todoContext.TodoItems.FirstOrDefaultAsync(t => t.Id == request.Id);
             if (item == null)
             {
                 throw new RpcException(new Status(StatusCode.NotFound, "Todo Item not found"));
@@ -38,7 +35,8 @@
         public override async Task GetAllTodoItems(Empty request, IServerStreamWriter<TodoItem> responseStream,
             ServerCallContext context)
         {
-            foreach (var item in _context.TodoItems)
+            var todoContext = GetScopedTodoContext();
+            foreach (var item in todoContext.TodoItems)
             {
                 await responseStream.WriteAsync(item);
             }
@@ -46,16 +44,18 @@
 
         public override async Task<TodoItem> AddTodoItem(AddTodoItemRequest request, ServerCallContext context)
         {
+            var todoContext = GetScopedTodoContext();
             var item = request.ToItem();
-            await _context.TodoItems.AddAsync(item);
-            await _context.SaveChangesAsync();
+            await todoContext.TodoItems.AddAsync(item);
+            await todoContext.SaveChangesAsync();
 
             return await Task.FromResult(item);
         }
 
         public override async Task<TodoItem> UpdateTodoItem(UpdateTodoItemRequest request, ServerCallContext context)
         {
-            var item = await _context.TodoItems.FirstOrDefaultAsync(t => t.Id == request.Id);
+            var todoContext = GetScopedTodoContext();
+            var item = await todoContext.TodoItems.FirstOrDefaultAsync(t => t.Id == request.Id);
             if (item == null)
             {
                 throw new RpcException(new Status(StatusCode.NotFound, "Todo Item not found"));
@@ -64,22 +64,31 @@
             item.Name = request.Name;
             item.IsComplete = request.IsComplete;
 
-            _context.TodoItems.Update(item);
-            await _context.SaveChangesAsync();
+            todoContext.TodoItems.Update(item);
+            await todoContext.SaveChangesAsync();
             return await Task.FromResult(item);
         }
 
         public override async Task<Empty> DeleteTodoItem(DeleteTodoItemRequest request, ServerCallContext context)
         {
-            var item = await _context.TodoItems.FirstOrDefaultAsync(t => t.Id == request.Id);
+            var todoContext = GetScopedTodoContext();
+            var item = await todoContext.TodoItems.FirstOrDefaultAsync(t => t.Id == request.Id);
             if (item == null)
             {
                 throw new RpcException(new Status(StatusCode.NotFound, "Todo Item not found"));
             }
 
-            _context.TodoItems.Remove(item);
-            await _context.SaveChangesAsync();
+            todoContext.TodoItems.Remove(item);
+            await todoContext.SaveChangesAsync();
             return await Task.FromResult(new Empty());
+        }
+
+        private TodoContext GetScopedTodoContext()
+        {
+            var scoped = _provider.CreateScope();
+            var context = scoped.ServiceProvider.GetRequiredService<TodoContext>();
+            Console.WriteLine(context.Id);
+            return context;
         }
     }
 }
