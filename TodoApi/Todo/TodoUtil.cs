@@ -12,5 +12,15 @@
                 IsComplete = request.IsComplete
             };
         }
+
+        public static TodoItem ToItem(this UpdateTodoItemRequest request)
+        {
+            return new TodoItem
+            {
+                Id = request.Id,
+                Name = request.Name,
+                IsComplete = request.IsComplete
+            };
+        }
     }
 }

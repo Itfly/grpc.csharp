@@ -10,9 +10,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoServer", "TodoServer\TodoServer.csproj", "{DFC48368-9885-4D19-B2FE-1C900909DF69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoServer", "TodoServer\TodoServer.csproj", "{DFC48368-9885-4D19-B2FE-1C900909DF69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoClient", "TodoClient\TodoClient.csproj", "{2D85A54D-4137-4577-AF15-F9980A6520D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoClient", "TodoClient\TodoClient.csproj", "{2D85A54D-4137-4577-AF15-F9980A6520D5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grpc.Common", "..\Common\grpc.common\Grpc.Common.csproj", "{6673E45F-2C0B-4D5D-8C86-03344539E2F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +34,10 @@ Global
 		{2D85A54D-4137-4577-AF15-F9980A6520D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D85A54D-4137-4577-AF15-F9980A6520D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D85A54D-4137-4577-AF15-F9980A6520D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6673E45F-2C0B-4D5D-8C86-03344539E2F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6673E45F-2C0B-4D5D-8C86-03344539E2F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6673E45F-2C0B-4D5D-8C86-03344539E2F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6673E45F-2C0B-4D5D-8C86-03344539E2F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
