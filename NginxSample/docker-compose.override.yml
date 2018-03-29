@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  helloworldweb:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+
+networks:
+  default:
+    external:
+      name: nat

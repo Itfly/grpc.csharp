@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx-grpc
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    depends_on:
+      - helloworldweb
+      - helloserver
+      - worldserver
+    container_name: nginx-with-grpc
+    restart: always
+    ports:
+      - "5050:80"
+      - "5051:8080"
+    volumes:
+    - ./nginx/logs:/etc/nginx/logs
+
+  helloworldweb:
+    image: helloworldweb
+    build:
+      context: ./helloworldweb
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      - helloserver
+      - worldserver
+
+  helloserver:
+    image: helloserver
+    build:
+      context: ./helloserver
+      dockerfile: Dockerfile
+
+  worldserver:
+    image: worldserver
+    build:
+      context: ./worldserver
+      dockerfile: Dockerfile

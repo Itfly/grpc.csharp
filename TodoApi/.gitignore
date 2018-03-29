@@ -9,13 +9,13 @@
 *.userosscache
 *.sln.docstates
 
-# User-specific files (MonoDevelop/Xamarin Studio)
-*.userprefs
-
-#cert files
+# Certification files
 *.crt
 *.key
 *.csr
+
+# User-specific files (MonoDevelop/Xamarin Studio)
+*.userprefs
 
 # Build results
 [Dd]ebug/
