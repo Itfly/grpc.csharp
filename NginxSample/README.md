@@ -1,5 +1,5 @@
 # Get started with gRPC and Nginx
-> DOcker Image for gRPC servers (HelloServer, WorldServer), ASP.NET Core server(HelloworldWeb) and Nginx
+> A simple demo for running gRPC server and load balanced by Nginx.
 
 ## run container
 ```
