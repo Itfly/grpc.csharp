@@ -5,3 +5,9 @@
 ```
 docker-compose up 
 ```
+
+## Request Diagram
+
+Ruquest --> Nginx (port:8080) --> HelloworldWeb --> Nginx (port: 80) --> HelloServer
+                                         |
+                                         |--> Nginx (port: 80) --> WorldServer
